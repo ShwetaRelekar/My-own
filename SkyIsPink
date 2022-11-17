@@ -1,0 +1,16 @@
+pipeline {
+    agent {
+        Slave2 {
+            label 'Slave2'
+            customWorkspace '/mnt/SlaveNew'
+        }
+    }
+	stages {
+        stage('new_folder') {
+            steps {
+                sh 'mkdir colors'
+            }
+        }
+		
+    }
+}
