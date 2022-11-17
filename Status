@@ -1,0 +1,16 @@
+pipeline {
+    agent any 
+    stages {
+        stage('Build') { 
+            steps {
+               sh "service httpd status"
+            }
+        }
+        stage('Test') { 
+            steps {
+             sh "echo Hello Monika >> /var/www/html/index.html"
+            }
+        }
+        
+    }
+}
