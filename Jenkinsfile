@@ -1,23 +1,21 @@
 pipeline {
     agent any 
     stages {
-        stage('install') { 
-            steps { 
+        stage('Build') { 
+            steps {
                 sh "yum install httpd -y"
+              sh "service httpd start"
             }
         }
-        stage('start') { 
+        stage('Test') { 
             steps {
-                sh "service httpd start"
+                sh "cd /var/www/html"
+              sh "echo hope for the best >> /var/www/html/index.html" 
             }
         }
         stage('Deploy') { 
             steps {
-                sh "cd /var/wwww/html"
-                sh "echo Hello world >> /var/wwww/html/index.html"
-                sh "chmod 777 /var/wwww/html/index.html"
-              
+                sh "chmod 777 /var/www/html/index.html"
             }
         }
     }
-}
